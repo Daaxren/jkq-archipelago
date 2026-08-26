@@ -1,0 +1,24 @@
+﻿name: Player
+game: JUMP KING QUEST
+description: Default JUMP KING QUEST Template
+JUMP KING QUEST:
+  progression_balancing: 50
+  accessibility: full
+  better_gurglevale: false
+  cell_key: vanilla
+  hotdog: vanilla
+  shuffle_armor: false
+  shuffle_brownkloake_shop: false
+  random_brownkloake_prices: false
+  brownkloake_minimum_price: 10
+  brownkloake_maximum_price: 500
+  emoaiansanity: false
+  shuffle_doubts: false
+  shuffle_whetstones: false
+  shuffle_filaments: false
+  shuffle_wisdom: false
+  shuffle_marbles: false
+  shuffle_ammo: false
+  shuffle_consumables: false
+  lobotomy_language: false
+  death_link: false
