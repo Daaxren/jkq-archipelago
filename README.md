@@ -36,28 +36,39 @@ upgrades, consumables and more — joins the pool through the [YAML options](#ya
 - To generate/host a seed: [Archipelago 0.6.7](https://github.com/ArchipelagoMW/Archipelago/releases)
   — see [`docs/GENERATE.md`](docs/GENERATE.md).
 
-## Install (player)
+## Installation
 
-1. Install **BepInEx 5 (x64)** into the JKQ game folder (unzip it next to the game exe, run the
-   game once, close it — a `BepInEx/plugins` folder appears).
-2. Create the folder `BepInEx/plugins/JKQArchipelago.NetworkSlice/` and copy the three DLLs
-   from [`client/`](client/) into it:
+1. Install **BepInEx 5 (x64)** into the /JUMP KING QUEST game folder: unzip it next to the game exe, run the
+   game once, close it. `BepInEx/plugins` folder appears.
+   To find your /JUMP KING QUEST game folder: go in your Steam Library → right click on JUMP KING QUEST → Manage → Browse local files.
+2. Manually create the folder `BepInEx/plugins/JKQArchipelago.NetworkSlice/` and copy the three DLLs
+   from the downloaded zip [`client/`](client/) into it:
    - `JKQArchipelago.NetworkSlice.dll`
    - `Archipelago.MultiClient.Net.dll`
    - `Newtonsoft.Json.dll`
-3. Launch the game. In the **main menu** there is now an **Archipelago** button (under New Game):
+
+## Joining a Multiworld
+
+1. Launch the game. In the **main menu** there is now an **Archipelago** button:
    enter host (`archipelago.gg`), port, slot name and password, then **Save & Connect**.
-4. **First time only:** the dialog answers *"Saved. RESTART the game to connect…"* — close the
+2. **First installation only:** the dialog answers *"Saved. RESTART the game to connect…"* — close the
    game and launch it again. This happens once per install (the first Save & Connect is what
    enables the mod, and it arms only at startup). From then on the game connects **by itself**
    at the main menu on every launch, and changing room/port from the dialog is live — no more
    restarts.
-5. **Start a NEW save** for a new seed (recommended: one save per seed). Play — collected checks
-   are sent instantly, received items pop up natively.
+3. **Start a NEW save** for a new seed (recommended: one save per seed).
+4. Play.
+
+## Generate & host a game
+
+Full step-by-step (no tooling beyond Archipelago itself): [`docs/GENERATE.md`](docs/GENERATE.md).
+Short version: install the latest Archipelago build → double-click `apworld/jump_king_quest.apworld` →
+put one YAML per player (start from [`apworld/JKQ-player-template.yaml`](apworld/JKQ-player-template.yaml)) in `Players/` →
+**Generate** → upload the output zip at <https://archipelago.gg/uploads> → create the room and share host/port.
 
 ### Good to know
 
-- **Saves are independent from the room.** You can switch character/save without restarting the game but it's not the intended way to play;
+- **Saves are independent from the room.** You can switch character/save in the same Archipelago room. This is not the intended way to play;
   the client re-binds automatically. Each character keeps its own inventory and flags while the Archipelago world is shared, items already received in another save will be voided.
 - **Offline-tolerant.** A pickup collected while the connection is down is recorded durably and
   delivered when the connection returns — never lost, never doubled.
@@ -69,14 +80,6 @@ upgrades, consumables and more — joins the pool through the [YAML options](#ya
 - Logs: `BepInEx/LogOutput.log`, lines prefixed `[JKQAP-NET]` — attach them to any bug report,
   **together with `BepInEx/JKQAP-events.log`** (a crash-proof copy of the same events: if the game
   freezes or is killed, this file keeps the final seconds that `LogOutput.log` can lose).
-
-## Generate & host a game
-
-Full step-by-step (no tooling beyond Archipelago itself): [`docs/GENERATE.md`](docs/GENERATE.md).
-Short version: install Archipelago 0.6.7 → double-click `apworld/jump_king_quest.apworld` →
-put one YAML per player (start from [`apworld/JKQ-player-template.yaml`](apworld/JKQ-player-template.yaml))
-in `Players/` → **Generate** → upload the output zip at <https://archipelago.gg/uploads> → open
-the room and share host/port.
 
 ## YAML options
 
