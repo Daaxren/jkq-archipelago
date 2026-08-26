@@ -1,12 +1,12 @@
 # JUMP KING QUEST — Archipelago
 
-An [Archipelago](https://archipelago.gg) multiworld randomizer for **JUMP KING QUEST** (Steam).
+An [Archipelago](https://archipelago.gg) multiworld randomizer for **JUMP KING QUEST** [Steam](https://store.steampowered.com/app/2317640/JUMP_KING_QUEST/).
 
 - **Client**: a BepInEx 5 plugin (`client/`) — connects the game to an Archipelago server,
   turns pickups/shops/quests/bosses into checks, delivers multiworld items in game with native
-  popups, and sends the goal when you pass the last door of the game.
+  popups, and sends the goal when you pass through the last door of the game.
 - **World**: an Archipelago APWorld (`apworld/`) — used to generate the multiworld seed.
-  870 locations / 399 items, world version **0.9.0**, Archipelago **0.6.7**.
+  870 locations, world version **0.9.0**, Archipelago **0.6.7**.
 
 > **Status: beta.** Single-player-offline game sessions only (the plugin refuses to run
 > alongside JKQ's native online). Nothing from the game is redistributed here: no game files,
@@ -25,12 +25,12 @@ By default:
   Deprived only starts with Paper Bag, while Stringent has all the armor set pieces, Bow and
   Arrows.
 
-Boss first-clears are always checks. Everything else — armor sets, shops, the Emoaian economy,
+Everything else — armor sets, shops, the Emoaian economy,
 upgrades, consumables and more — joins the pool through the [YAML options](#yaml-options) below.
 
 ## Requirements
 
-- JUMP KING QUEST on Steam, current build. The plugin verifies the game build at startup and
+- JUMP KING QUEST on Steam, current build (V.1.1.0:661). The plugin verifies the game build at startup and
   **disarms itself safely** on an unsupported build (nothing is patched, the game stays vanilla).
 - [BepInEx 5.4.23.x, x64](https://github.com/BepInEx/BepInEx/releases) (5.4.23.5 recommended).
 - To generate/host a seed: [Archipelago 0.6.7](https://github.com/ArchipelagoMW/Archipelago/releases)
@@ -42,9 +42,8 @@ upgrades, consumables and more — joins the pool through the [YAML options](#ya
    game once, close it — a `BepInEx/plugins` folder appears).
 2. Create the folder `BepInEx/plugins/JKQArchipelago.NetworkSlice/` and copy the three DLLs
    from [`client/`](client/) into it:
-   - `JKQArchipelago.NetworkSlice.dll` (the plugin)
-   - `Archipelago.MultiClient.Net.dll` (patched network library — **use this build**, the stock
-     NuGet build has a Mono thread-pool stall that delays checks)
+   - `JKQArchipelago.NetworkSlice.dll`
+   - `Archipelago.MultiClient.Net.dll`
    - `Newtonsoft.Json.dll`
 3. Launch the game. In the **main menu** there is now an **Archipelago** button (under New Game):
    enter host (`archipelago.gg`), port, slot name and password, then **Save & Connect**.
@@ -58,20 +57,15 @@ upgrades, consumables and more — joins the pool through the [YAML options](#ya
 
 ### Good to know
 
-- **Saves are independent from the room.** You can switch saves without restarting the game;
-  the client re-binds automatically. Each save keeps its own Archipelago bookkeeping (delivered
-  items, confirmed checks, goal state). Loading a save with progress the room has never seen
-  simply "burns" those already-collected locations — it never blocks the session.
+- **Saves are independent from the room.** You can switch character/save without restarting the game but it's not the intended way to play;
+  the client re-binds automatically. Each character keeps its own inventory and flags while the Archipelago world is shared, items already received in another save will be voided.
 - **Offline-tolerant.** A pickup collected while the connection is down is recorded durably and
   delivered when the connection returns — never lost, never doubled.
 - **Disconnect.** The Archipelago dialog has a **Disconnect** button: it turns auto-connect off
   so the game stays vanilla from then on (immediate at the main menu; if you already played a
   save this launch, it takes effect at the next restart). Save & Connect turns it back on
   **live, no restart needed** — the one-restart rule only applies to the very first install.
-- **Fast travel unbound.** During a seed, Handmaiden hands travel in EVERY direction between
-  hands you have activated (vanilla only goes downward), and an extra hand appears inside
-  Redfin Prison so the early game is never a dead end.
-- **Goal**: pass the **last door** of the game (top of the final tower stairs).
+- **Goal**: pass the **last door** of the game (top of Phantom Tower final stairs).
 - Logs: `BepInEx/LogOutput.log`, lines prefixed `[JKQAP-NET]` — attach them to any bug report,
   **together with `BepInEx/JKQAP-events.log`** (a crash-proof copy of the same events: if the game
   freezes or is killed, this file keeps the final seconds that `LogOutput.log` can lose).
@@ -115,7 +109,7 @@ also documented inline). Everything below is **off / vanilla by default**.
   anything past a few thousand turns his shop into a marble grind.
 - **`emoaiansanity`** — shuffle Emoaian Pins, the Emotes sold by Emoaian Statue NPCs for Emoaian
   Pins, and the Emotes gifted by NPCs (Ook, Combat Stance, Pray, Relaxing Break, Carefree
-  Break…).
+  Break).
 - **`shuffle_doubts`** — shuffle the Nascent Doubts used to respec your character's attributes.
 - **`shuffle_whetstones`** — shuffle the Whetstone items used to upgrade weapons.
 - **`shuffle_filaments`** — shuffle the Reinforced Filaments used to upgrade armor.
@@ -155,7 +149,7 @@ also documented inline). Everything below is **off / vanilla by default**.
   (useful for shopsanity) and Brittle Bones (brutal with DeathLink).
 - Black Knight skip and Kitchen Key skip are not considered in logic.
 - You can escape your starting cell using shield surfing: not considered in logic.
-- Logic expects you to have the **Torch** in every dark room.
+- Logic expects you to have the **Torch** in every dark room in Phantom Tower except the one at the very bottom.
 - Logic expects you to pull the lever in Phantom Tower to explore the dark area with the
   floating skulls.
 - **All weapons are progression items**, since you need at least one to get over the wooden wall
@@ -219,6 +213,7 @@ see [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
   developed alongside him, and there would be no release without his game knowledge and testing.
 - Thanks to **Cam** (cammycal) and **Boo** (bookiskookis) from the official Archipelago Discord
   for their valuable insights during development.
+- Thanks to **Fajacopo** for drawing the Archipelago icon in the style of JKQ.
 - Built entirely using **Claude AI** (Anthropic's Claude Code) as the development tool.
 
 Not affiliated with the developers of JUMP KING QUEST or with Archipelago.
