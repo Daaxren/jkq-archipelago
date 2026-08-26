@@ -1,6 +1,6 @@
 # JUMP KING QUEST — Archipelago
 
-An [Archipelago](https://archipelago.gg) multiworld randomizer for **JUMP KING QUEST** [Steam](https://store.steampowered.com/app/2317640/JUMP_KING_QUEST/).
+An [Archipelago](https://archipelago.gg) multiworld randomizer for **JUMP KING QUEST** on [Steam](https://store.steampowered.com/app/2317640/JUMP_KING_QUEST/).
 
 - **Client**: a BepInEx 5 plugin (`client/`) — connects the game to an Archipelago server,
   turns pickups/shops/quests/bosses into checks, delivers multiworld items in game with native
@@ -30,15 +30,15 @@ upgrades, consumables and more — joins the pool through the [YAML options](#ya
 
 ## Requirements
 
-- JUMP KING QUEST on Steam, current build (V.1.1.0:661). The plugin verifies the game build at startup and
-  **disarms itself safely** on an unsupported build (nothing is patched, the game stays vanilla).
+- JUMP KING QUEST on [Steam](https://store.steampowered.com/app/2317640/JUMP_KING_QUEST/), current build (V.1.1.0:661).
 - [BepInEx 5.4.23.x, x64](https://github.com/BepInEx/BepInEx/releases) (5.4.23.5 recommended).
+- [The JKQ-Archipelago Release](https://github.com/Daaxren/jkq-archipelago/releases) (the zip).
 - To generate/host a seed: [Archipelago 0.6.7](https://github.com/ArchipelagoMW/Archipelago/releases)
   — see [`docs/GENERATE.md`](docs/GENERATE.md).
 
 ## Installation
 
-1. Install **BepInEx 5 (x64)** into the /JUMP KING QUEST game folder: unzip it next to the game exe, run the
+1. Install **BepInEx 5 (x64)** into the JUMP KING QUEST/ game folder: unzip it next to the game exe, run the
    game once, close it. `BepInEx/plugins` folder appears.
    To find your /JUMP KING QUEST game folder: go in your Steam Library → right click on JUMP KING QUEST → Manage → Browse local files.
 2. Manually create the folder `BepInEx/plugins/JKQArchipelago.NetworkSlice/` and copy the three DLLs
@@ -65,21 +65,6 @@ Full step-by-step (no tooling beyond Archipelago itself): [`docs/GENERATE.md`](d
 Short version: install the latest Archipelago build → double-click `apworld/jump_king_quest.apworld` →
 put one YAML per player (start from [`apworld/JKQ-player-template.yaml`](apworld/JKQ-player-template.yaml)) in `Players/` →
 **Generate** → upload the output zip at <https://archipelago.gg/uploads> → create the room and share host/port.
-
-### Good to know
-
-- **Saves are independent from the room.** You can switch character/save in the same Archipelago room. This is not the intended way to play;
-  the client re-binds automatically. Each character keeps its own inventory and flags while the Archipelago world is shared, items already received in another save will be voided.
-- **Offline-tolerant.** A pickup collected while the connection is down is recorded durably and
-  delivered when the connection returns — never lost, never doubled.
-- **Disconnect.** The Archipelago dialog has a **Disconnect** button: it turns auto-connect off
-  so the game stays vanilla from then on (immediate at the main menu; if you already played a
-  save this launch, it takes effect at the next restart). Save & Connect turns it back on
-  **live, no restart needed** — the one-restart rule only applies to the very first install.
-- **Goal**: pass the **last door** of the game (top of Phantom Tower final stairs).
-- Logs: `BepInEx/LogOutput.log`, lines prefixed `[JKQAP-NET]` — attach them to any bug report,
-  **together with `BepInEx/JKQAP-events.log`** (a crash-proof copy of the same events: if the game
-  freezes or is killed, this file keeps the final seconds that `LogOutput.log` can lose).
 
 ## YAML options
 
@@ -142,8 +127,19 @@ also documented inline). Everything below is **off / vanilla by default**.
 - Old Man and Igor **won't give you the Eternial Hotdog** if you don't have it.
 - Old Man only trades with hairy nuts in **Mangrove Pits**, not Bog Beach, due to limitations.
 
-## Logic notes & warnings
+## Good to know
 
+- **Saves are independent from the room.** You can switch character/save in the same Archipelago room; the client re-binds automatically.
+  This is not the intended way to play. Each character keeps its own inventory and flags while the Archipelago world is shared, items already received in another save will be voided.
+- **Offline-tolerant.** A pickup collected while the connection is down is recorded durably and
+  delivered when the connection returns — never lost, never doubled.
+- The Archipelago dialog has a **Disconnect** button: it turns auto-connect off
+  so the game stays vanilla from then on (immediate at the main menu; if you already played a
+  save this launch, it takes effect at the next restart). Save & Connect turns it back on.
+- Logs: `BepInEx/LogOutput.log`, lines prefixed `[JKQAP-NET]` — attach them to any bug report,
+  **together with `BepInEx/JKQAP-events.log`** (a crash-proof copy of the same events: if the game
+  freezes or is killed, this file keeps the final seconds that `LogOutput.log` can lose).
+- **Goal**: pass the **last door** of the game (top of Phantom Tower final stairs).
 - **Don't sell progression items!** You can sell items that are needed to obtain checks (like
   the Frog King armor pieces), making some quests impossible to complete — and potentially the
   whole Archipelago unbeatable.
